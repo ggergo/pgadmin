@@ -1,0 +1,15 @@
+version: '3'
+services:
+  pgadmin:
+    container_name: 'pgadmin'
+    network_mode: bridge
+    image: dpage/pgadmin4
+    expose:
+      - 80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL
+      - PGADMIN_DEFAULT_PASSWORD
+    labels:
+      - traefik.enable=true
+      - traefik.port=80
+      - traefik.frontend.rule=Host:$PGADMIN_VIRTUAL_HOST
